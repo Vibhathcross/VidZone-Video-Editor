@@ -103,41 +103,84 @@ VidZone also includes two bonus tools:
 
 ## 🛠️ Installation & Setup
 
-### Prerequisites
+There are **two ways** to install and run VidZone.
+
+---
+
+### 📦 Method 1: Install from Pendrive (Portable — No Setup Required)
+
+> **Best for:** Sharing via pendrive, USB, or direct file transfer. No Node.js or internet needed.
+
+If you already have the packaged `VidZone-win32-x64` folder or `VidZone-win32-x64.zip`, follow these steps:
+
+1. **Copy the folder to your device** (via pendrive, USB, or file share)
+2. **Extract the ZIP** (if you have the `.zip` file — right-click → "Extract All")
+3. **Run `VidZone.exe`** — double-click the executable
+   - The app is **fully portable** — no installation, no registry changes, no admin required
+   - It runs directly from the pendrive or any folder
+
+> **Note:** The portable build is approximately **200–300 MB** in size because it includes the Electron runtime and FFmpeg.wasm core files.
+
+---
+
+### 🌐 Method 2: Clone from GitHub (For Developers)
+
+> **Best for:** Developers who want to customize, build, or contribute to the project.
+
+#### Prerequisites
 - [Node.js](https://nodejs.org/) (v18 or later)
 - npm (comes with Node.js)
 
-### Clone & Install
+#### Clone & Install
 ```bash
 git clone https://github.com/Vibhathcross/VidZone-Video-Editor.git
 cd VidZone-Video-Editor
 npm install
 ```
 
-### Development
+#### Development (Browser)
 ```bash
 npm run dev
 ```
 Starts the Vite dev server. Open the URL shown in the terminal (typically `http://localhost:5173`).
 
-### Production Build
+#### Production Build
 ```bash
 npm run build
 ```
 Builds the optimized production bundle into the `dist/` folder.
 
-### Desktop App (Electron)
+#### Desktop App (Electron)
 ```bash
 npm run build
 npm run electron
 ```
 Launches the standalone Electron window with a local HTTP server serving the built files with proper security headers.
 
-### Package for Windows
+#### Package for Windows (Create Portable Build)
 ```bash
 npm run electron:package
 ```
-Creates a distributable Windows executable in the `release/` folder.
+Creates a distributable Windows executable + portable folder in the `release/` directory. This is what you can copy to a pendrive and share with others.
+
+#### What's inside the packaged build?
+Once packaged, the `release/VidZone-win32-x64/` folder contains:
+```
+VidZone-win32-x64/
+├── VidZone.exe          # Main executable (just double-click to run)
+├── resources/
+│   └── app.asar         # Bundled application code
+├── locales/             # Language files for UI
+├── ffmpeg.dll           # FFmpeg binary
+├── d3dcompiler_47.dll   # DirectX compiler
+├── libEGL.dll           # Graphics libraries
+├── libGLESv2.dll
+├── vk_swiftshader.dll   # Vulkan graphics
+├── vulkan-1.dll
+├── icudtl.dat           # Unicode data
+└── ... (other runtime files)
+```
+Simply copy this entire folder anywhere — pendrive, external drive, desktop — and run `VidZone.exe`.
 
 ---
 
